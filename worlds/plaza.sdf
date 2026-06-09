@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<!-- wws-sim-env-plaza-patrol: a populated plaza. People (primitive figures),
+     buildings, and trees the drone surveys. Drone is spawned by the runtime. -->
+<sdf version="1.9">
+  <world name="plaza-patrol">
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+
+    <light name="sun" type="directional"><cast_shadows>true</cast_shadows><pose>0 0 20 0 0 0</pose>
+      <diffuse>1 1 1 1</diffuse><specular>0.4 0.4 0.4 1</specular><direction>-0.4 0.3 -0.9</direction></light>
+
+    <model name="ground_plane"><static>true</static><link name="link">
+      <collision name="collision"><geometry><plane><normal>0 0 1</normal><size>400 400</size></plane></geometry></collision>
+      <visual name="visual"><geometry><plane><normal>0 0 1</normal><size>400 400</size></plane></geometry>
+        <material><ambient>0.45 0.50 0.40 1</ambient><diffuse>0.50 0.56 0.45 1</diffuse></material></visual></link></model>
+
+    <model name="person_0">
+      <static>true</static>
+      <pose>8.00 2.00 0 0 0 2.03</pose>
+      <link name="link">
+        <visual name="legs"><pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>0.30 0.20 0.90</size></box></geometry>
+          <material><ambient>0.15 0.15 0.25 1</ambient><diffuse>0.20 0.20 0.35 1</diffuse></material></visual>
+        <visual name="torso"><pose>0 0 1.15 0 0 0</pose>
+          <geometry><cylinder><radius>0.20</radius><length>0.60</length></cylinder></geometry>
+          <material><ambient>0.80 0.20 0.20 1</ambient><diffuse>0.80 0.20 0.20 1</diffuse></material></visual>
+        <visual name="head"><pose>0 0 1.60 0 0 0</pose>
+          <geometry><sphere><radius>0.13</radius></sphere></geometry>
+          <material><ambient>0.85 0.68 0.55 1</ambient><diffuse>0.85 0.68 0.55 1</diffuse></material></visual>
+        <visual name="arm_l"><pose>0 0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.80 0.20 0.20 1</ambient><diffuse>0.80 0.20 0.20 1</diffuse></material></visual>
+        <visual name="arm_r"><pose>0 -0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.80 0.20 0.20 1</ambient><diffuse>0.80 0.20 0.20 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="person_1">
+      <static>true</static>
+      <pose>10.00 -3.00 0 0 0 0.95</pose>
+      <link name="link">
+        <visual name="legs"><pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>0.30 0.20 0.90</size></box></geometry>
+          <material><ambient>0.15 0.15 0.25 1</ambient><diffuse>0.20 0.20 0.35 1</diffuse></material></visual>
+        <visual name="torso"><pose>0 0 1.15 0 0 0</pose>
+          <geometry><cylinder><radius>0.20</radius><length>0.60</length></cylinder></geometry>
+          <material><ambient>0.20 0.45 0.85 1</ambient><diffuse>0.20 0.45 0.85 1</diffuse></material></visual>
+        <visual name="head"><pose>0 0 1.60 0 0 0</pose>
+          <geometry><sphere><radius>0.13</radius></sphere></geometry>
+          <material><ambient>0.85 0.68 0.55 1</ambient><diffuse>0.85 0.68 0.55 1</diffuse></material></visual>
+        <visual name="arm_l"><pose>0 0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.20 0.45 0.85 1</ambient><diffuse>0.20 0.45 0.85 1</diffuse></material></visual>
+        <visual name="arm_r"><pose>0 -0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.20 0.45 0.85 1</ambient><diffuse>0.20 0.45 0.85 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="person_2">
+      <static>true</static>
+      <pose>12.00 4.00 0 0 0 4.09</pose>
+      <link name="link">
+        <visual name="legs"><pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>0.30 0.20 0.90</size></box></geometry>
+          <material><ambient>0.15 0.15 0.25 1</ambient><diffuse>0.20 0.20 0.35 1</diffuse></material></visual>
+        <visual name="torso"><pose>0 0 1.15 0 0 0</pose>
+          <geometry><cylinder><radius>0.20</radius><length>0.60</length></cylinder></geometry>
+          <material><ambient>0.95 0.80 0.20 1</ambient><diffuse>0.95 0.80 0.20 1</diffuse></material></visual>
+        <visual name="head"><pose>0 0 1.60 0 0 0</pose>
+          <geometry><sphere><radius>0.13</radius></sphere></geometry>
+          <material><ambient>0.85 0.68 0.55 1</ambient><diffuse>0.85 0.68 0.55 1</diffuse></material></visual>
+        <visual name="arm_l"><pose>0 0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.95 0.80 0.20 1</ambient><diffuse>0.95 0.80 0.20 1</diffuse></material></visual>
+        <visual name="arm_r"><pose>0 -0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.95 0.80 0.20 1</ambient><diffuse>0.95 0.80 0.20 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="person_3">
+      <static>true</static>
+      <pose>7.00 -5.00 0 0 0 0.45</pose>
+      <link name="link">
+        <visual name="legs"><pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>0.30 0.20 0.90</size></box></geometry>
+          <material><ambient>0.15 0.15 0.25 1</ambient><diffuse>0.20 0.20 0.35 1</diffuse></material></visual>
+        <visual name="torso"><pose>0 0 1.15 0 0 0</pose>
+          <geometry><cylinder><radius>0.20</radius><length>0.60</length></cylinder></geometry>
+          <material><ambient>0.30 0.70 0.35 1</ambient><diffuse>0.30 0.70 0.35 1</diffuse></material></visual>
+        <visual name="head"><pose>0 0 1.60 0 0 0</pose>
+          <geometry><sphere><radius>0.13</radius></sphere></geometry>
+          <material><ambient>0.85 0.68 0.55 1</ambient><diffuse>0.85 0.68 0.55 1</diffuse></material></visual>
+        <visual name="arm_l"><pose>0 0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.30 0.70 0.35 1</ambient><diffuse>0.30 0.70 0.35 1</diffuse></material></visual>
+        <visual name="arm_r"><pose>0 -0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.30 0.70 0.35 1</ambient><diffuse>0.30 0.70 0.35 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="person_4">
+      <static>true</static>
+      <pose>14.00 0.00 0 0 0 3.37</pose>
+      <link name="link">
+        <visual name="legs"><pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>0.30 0.20 0.90</size></box></geometry>
+          <material><ambient>0.15 0.15 0.25 1</ambient><diffuse>0.20 0.20 0.35 1</diffuse></material></visual>
+        <visual name="torso"><pose>0 0 1.15 0 0 0</pose>
+          <geometry><cylinder><radius>0.20</radius><length>0.60</length></cylinder></geometry>
+          <material><ambient>0.70 0.30 0.75 1</ambient><diffuse>0.70 0.30 0.75 1</diffuse></material></visual>
+        <visual name="head"><pose>0 0 1.60 0 0 0</pose>
+          <geometry><sphere><radius>0.13</radius></sphere></geometry>
+          <material><ambient>0.85 0.68 0.55 1</ambient><diffuse>0.85 0.68 0.55 1</diffuse></material></visual>
+        <visual name="arm_l"><pose>0 0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.70 0.30 0.75 1</ambient><diffuse>0.70 0.30 0.75 1</diffuse></material></visual>
+        <visual name="arm_r"><pose>0 -0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.70 0.30 0.75 1</ambient><diffuse>0.70 0.30 0.75 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="person_5">
+      <static>true</static>
+      <pose>11.00 7.00 0 0 0 2.30</pose>
+      <link name="link">
+        <visual name="legs"><pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>0.30 0.20 0.90</size></box></geometry>
+          <material><ambient>0.15 0.15 0.25 1</ambient><diffuse>0.20 0.20 0.35 1</diffuse></material></visual>
+        <visual name="torso"><pose>0 0 1.15 0 0 0</pose>
+          <geometry><cylinder><radius>0.20</radius><length>0.60</length></cylinder></geometry>
+          <material><ambient>0.90 0.50 0.15 1</ambient><diffuse>0.90 0.50 0.15 1</diffuse></material></visual>
+        <visual name="head"><pose>0 0 1.60 0 0 0</pose>
+          <geometry><sphere><radius>0.13</radius></sphere></geometry>
+          <material><ambient>0.85 0.68 0.55 1</ambient><diffuse>0.85 0.68 0.55 1</diffuse></material></visual>
+        <visual name="arm_l"><pose>0 0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.90 0.50 0.15 1</ambient><diffuse>0.90 0.50 0.15 1</diffuse></material></visual>
+        <visual name="arm_r"><pose>0 -0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.90 0.50 0.15 1</ambient><diffuse>0.90 0.50 0.15 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="person_6">
+      <static>true</static>
+      <pose>15.00 -4.00 0 0 0 0.36</pose>
+      <link name="link">
+        <visual name="legs"><pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>0.30 0.20 0.90</size></box></geometry>
+          <material><ambient>0.15 0.15 0.25 1</ambient><diffuse>0.20 0.20 0.35 1</diffuse></material></visual>
+        <visual name="torso"><pose>0 0 1.15 0 0 0</pose>
+          <geometry><cylinder><radius>0.20</radius><length>0.60</length></cylinder></geometry>
+          <material><ambient>0.20 0.70 0.70 1</ambient><diffuse>0.20 0.70 0.70 1</diffuse></material></visual>
+        <visual name="head"><pose>0 0 1.60 0 0 0</pose>
+          <geometry><sphere><radius>0.13</radius></sphere></geometry>
+          <material><ambient>0.85 0.68 0.55 1</ambient><diffuse>0.85 0.68 0.55 1</diffuse></material></visual>
+        <visual name="arm_l"><pose>0 0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.20 0.70 0.70 1</ambient><diffuse>0.20 0.70 0.70 1</diffuse></material></visual>
+        <visual name="arm_r"><pose>0 -0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.20 0.70 0.70 1</ambient><diffuse>0.20 0.70 0.70 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="person_7">
+      <static>true</static>
+      <pose>9.00 6.00 0 0 0 3.19</pose>
+      <link name="link">
+        <visual name="legs"><pose>0 0 0.45 0 0 0</pose>
+          <geometry><box><size>0.30 0.20 0.90</size></box></geometry>
+          <material><ambient>0.15 0.15 0.25 1</ambient><diffuse>0.20 0.20 0.35 1</diffuse></material></visual>
+        <visual name="torso"><pose>0 0 1.15 0 0 0</pose>
+          <geometry><cylinder><radius>0.20</radius><length>0.60</length></cylinder></geometry>
+          <material><ambient>0.80 0.20 0.20 1</ambient><diffuse>0.80 0.20 0.20 1</diffuse></material></visual>
+        <visual name="head"><pose>0 0 1.60 0 0 0</pose>
+          <geometry><sphere><radius>0.13</radius></sphere></geometry>
+          <material><ambient>0.85 0.68 0.55 1</ambient><diffuse>0.85 0.68 0.55 1</diffuse></material></visual>
+        <visual name="arm_l"><pose>0 0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.80 0.20 0.20 1</ambient><diffuse>0.80 0.20 0.20 1</diffuse></material></visual>
+        <visual name="arm_r"><pose>0 -0.27 1.15 0 0 0</pose>
+          <geometry><box><size>0.12 0.12 0.55</size></box></geometry>
+          <material><ambient>0.80 0.20 0.20 1</ambient><diffuse>0.80 0.20 0.20 1</diffuse></material></visual>
+      </link>
+    </model>
+    <model name="bldg_n"><static>true</static><pose>18.0 8.0 3.5 0 0 0</pose>
+      <link name="link"><collision name="c"><geometry><box><size>8 6 7</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>8 6 7</size></box></geometry>
+          <material><ambient>0.72 0.70 0.66 1</ambient><diffuse>0.72 0.70 0.66 1</diffuse></material></visual></link></model>
+    <model name="bldg_e"><static>true</static><pose>22.0 -6.0 4.5 0 0 0</pose>
+      <link name="link"><collision name="c"><geometry><box><size>6 10 9</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>6 10 9</size></box></geometry>
+          <material><ambient>0.66 0.62 0.58 1</ambient><diffuse>0.66 0.62 0.58 1</diffuse></material></visual></link></model>
+    <model name="bldg_s"><static>true</static><pose>6.0 -12.0 2.5 0 0 0</pose>
+      <link name="link"><collision name="c"><geometry><box><size>10 7 5</size></box></geometry></collision>
+        <visual name="v"><geometry><box><size>10 7 5</size></box></geometry>
+          <material><ambient>0.75 0.72 0.64 1</ambient><diffuse>0.75 0.72 0.64 1</diffuse></material></visual></link></model>
+    <model name="tree_0"><static>true</static><pose>5.0 5.0 0 0 0 0</pose><link name="link">
+        <visual name="trunk"><pose>0 0 1.0 0 0 0</pose><geometry><cylinder><radius>0.18</radius><length>2.0</length></cylinder></geometry>
+          <material><ambient>0.40 0.26 0.13 1</ambient><diffuse>0.40 0.26 0.13 1</diffuse></material></visual>
+        <visual name="canopy"><pose>0 0 2.6 0 0 0</pose><geometry><sphere><radius>1.1</radius></sphere></geometry>
+          <material><ambient>0.13 0.45 0.16 1</ambient><diffuse>0.15 0.55 0.18 1</diffuse></material></visual></link></model>
+    <model name="tree_1"><static>true</static><pose>16.0 5.0 0 0 0 0</pose><link name="link">
+        <visual name="trunk"><pose>0 0 1.0 0 0 0</pose><geometry><cylinder><radius>0.18</radius><length>2.0</length></cylinder></geometry>
+          <material><ambient>0.40 0.26 0.13 1</ambient><diffuse>0.40 0.26 0.13 1</diffuse></material></visual>
+        <visual name="canopy"><pose>0 0 2.6 0 0 0</pose><geometry><sphere><radius>1.1</radius></sphere></geometry>
+          <material><ambient>0.13 0.45 0.16 1</ambient><diffuse>0.15 0.55 0.18 1</diffuse></material></visual></link></model>
+    <model name="tree_2"><static>true</static><pose>13.0 -9.0 0 0 0 0</pose><link name="link">
+        <visual name="trunk"><pose>0 0 1.0 0 0 0</pose><geometry><cylinder><radius>0.18</radius><length>2.0</length></cylinder></geometry>
+          <material><ambient>0.40 0.26 0.13 1</ambient><diffuse>0.40 0.26 0.13 1</diffuse></material></visual>
+        <visual name="canopy"><pose>0 0 2.6 0 0 0</pose><geometry><sphere><radius>1.1</radius></sphere></geometry>
+          <material><ambient>0.13 0.45 0.16 1</ambient><diffuse>0.15 0.55 0.18 1</diffuse></material></visual></link></model>
+    <model name="tree_3"><static>true</static><pose>4.0 -3.0 0 0 0 0</pose><link name="link">
+        <visual name="trunk"><pose>0 0 1.0 0 0 0</pose><geometry><cylinder><radius>0.18</radius><length>2.0</length></cylinder></geometry>
+          <material><ambient>0.40 0.26 0.13 1</ambient><diffuse>0.40 0.26 0.13 1</diffuse></material></visual>
+        <visual name="canopy"><pose>0 0 2.6 0 0 0</pose><geometry><sphere><radius>1.1</radius></sphere></geometry>
+          <material><ambient>0.13 0.45 0.16 1</ambient><diffuse>0.15 0.55 0.18 1</diffuse></material></visual></link></model>
+  </world>
+</sdf>

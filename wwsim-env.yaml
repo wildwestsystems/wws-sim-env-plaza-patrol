@@ -1,0 +1,56 @@
+wwsim_env_version: 1
+name: plaza-patrol
+description: |
+  A populated town plaza — eight people, three buildings, and trees on an open
+  green. Fly the survey waypoints and watch the crowd from the drone camera.
+  A worked example of an env repo that ships a *scene with people*, kept to
+  primitive geometry so it renders reliably with no external model downloads.
+backend: gazebo
+
+gazebo:
+  world: worlds/plaza.sdf
+  required_models: []
+  physics:
+    rate_hz: 250
+
+# Minimal hard requirements. A camera-equipped vehicle (e.g. copter-quad-x500)
+# is what makes this env worthwhile — the onboard camera shows the crowd — but
+# the camera is not forced here so non-camera vehicles can still fly the patrol.
+required_sensors:
+  - gps
+  - imu
+
+weather:
+  wind:
+    mean_mps: 2.0
+    gust_mps: 4.0
+    seed_offset: 0
+
+lighting:
+  time_of_day: "14:00"
+
+# Survey tour: a loop over the plaza at ~15 m so the camera frames the people.
+scoring:
+  type: waypoint_tour
+  waypoints:
+    - [8.0, 2.0, 15.0]
+    - [12.0, -2.0, 15.0]
+    - [14.0, 4.0, 15.0]
+    - [10.0, -6.0, 15.0]
+  success_radius_m: 3.0
+  max_score: 100
+
+gpu:
+  preferred: [rtx_5090, rtx_4090, rtx_a6000]
+  min_vram_gb: 8
+
+ports:
+  mavlink_internal_udp: 14550
+  video_rtp_internal: 5600
+
+ttl:
+  default_minutes: 30
+  max_minutes: 120
+
+idle_shutdown:
+  no_telemetry_seconds: 300
