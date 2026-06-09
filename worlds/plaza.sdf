@@ -5,9 +5,26 @@
      Actor animation: see docs/GAZEBO-ACTORS.md in the sim-wws repo. -->
 <sdf version="1.9">
   <world name="plaza-patrol">
+    <!-- 1000Hz fixed step: the ardupilot_gazebo JSON FDM bridge needs this tick
+         to feed SITL at the expected rate. Without it the FDM loop stalls. -->
+    <physics name="1000hz" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
     <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
     <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
     <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <!-- Sensor systems the drone needs to FLY. Missing these = the vehicle's
+         IMU/GPS/baro produce no data, the ArduPilotPlugin sends no sensor JSON,
+         and SITL deadlocks ("No JSON sensor message received"). A world can
+         render fine (scene only) yet be unflyable without them. -->
+    <plugin filename="gz-sim-imu-system" name="gz::sim::systems::Imu"/>
+    <plugin filename="gz-sim-navsat-system" name="gz::sim::systems::NavSat"/>
+    <plugin filename="gz-sim-air-pressure-system" name="gz::sim::systems::AirPressure"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    <plugin filename="gz-sim-contact-system" name="gz::sim::systems::Contact"/>
     <light name="sun" type="directional"><cast_shadows>true</cast_shadows><pose>0 0 20 0 0 0</pose><diffuse>1 1 1 1</diffuse><specular>0.4 0.4 0.4 1</specular><direction>-0.4 0.3 -0.9</direction></light>
     <model name="ground_plane"><static>true</static><link name="link"><collision name="collision"><geometry><plane><normal>0 0 1</normal><size>400 400</size></plane></geometry></collision><visual name="visual"><geometry><plane><normal>0 0 1</normal><size>400 400</size></plane></geometry><material><ambient>0.45 0.50 0.40 1</ambient><diffuse>0.50 0.56 0.45 1</diffuse></material></visual></link></model>
 
